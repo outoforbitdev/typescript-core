@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Component } from 'react';
 import { UniqueKey } from './Component';
 import { IComponentProps } from './IComponentProps';

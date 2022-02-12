@@ -1,21 +1,16 @@
+import * as React from 'react';
 import {
-    ChangeEvent,
-    FocusEvent,
-    KeyboardEvent,
     useState
 } from 'react';
 import '../Styles/Input.css';
+import { Button } from './Button';
+import { defaultValidator, IInputProps, onBlur, onKeyDown, onValueChange } from './InputField';
 
-type TextValidator = (val: string) => boolean;
-
-interface ITextFieldProps {
-    defaultValue?: string;
-    onValueChange?: (val: string) => void;
-    onQuickValidate?: (val: string) => boolean;
-    onFullValidate?: (val: string) => boolean;
+interface ITextFieldProps extends IInputProps<string> {
+    clearable?: boolean;
 }
 
-export function TextField(props: ITextFieldProps) {
+export function TextField(props: ITextFieldProps): JSX.Element {
     const onQuickValidate = props.onQuickValidate ?
         props.onQuickValidate : defaultValidator;
     const onFullValidate = props.onFullValidate ?
@@ -27,50 +22,60 @@ export function TextField(props: ITextFieldProps) {
     const [value, setValue] = useState(defaultValue);
 
     return (
-        <input type={"text"}
-            value={props.defaultValue}
-            className={"OODCoreComponentInput"}
-            onBlur={onBlur(onQuickValidate, onFullValidate)}
-            onChange={onValueChange(onQuickValidate, onChange, setValue)}
-            onKeyDown={onKeyDown(setValue, defaultValue)}
-        />
+        <div className={"OODCoreComponentInputField"}>
+            <input type={"text"}
+                inputMode={"text"}
+                value={props.defaultValue}
+                className={"OODCoreComponentTextField"}
+                onBlur={onBlur(onQuickValidate, onFullValidate)}
+                onChange={onValueChange(onQuickValidate, onChange, setValue)}
+                onKeyDown={onKeyDown(setValue, defaultValue)}
+            />
+            {
+                props.clearable ? <Button text={"Clear"} onClick={__clearField} /> : null
+            }
+        </div>
     );
 }
 
-function defaultValidator(_val: string) {
-    return true;
+function __clearField(): void {
+
 }
 
-function onBlur(onQuickValidate: TextValidator, onFullValidate: TextValidator) {
-    return (event: FocusEvent<HTMLInputElement>) => {
-        const val = event.target.value;
+//function defaultValidator(_val: string) {
+//    return true;
+//}
 
-        if (!onQuickValidate(val) || !onFullValidate(val)) {
-            event.currentTarget.focus();
-        }
-    }
-}
+//function onBlur(onQuickValidate: TextValidator, onFullValidate: TextValidator) {
+//    return (event: FocusEvent<HTMLInputElement>) => {
+//        const val = event.target.value;
 
-function onValueChange(
-    onQuickValidate: TextValidator,
-    onValueChange: (val: string) => void,
-    setValue: (val: string) => void)
-{
-    return (event: ChangeEvent<HTMLInputElement>) => {
-        const val = event.target.value;
+//        if (!onQuickValidate(val) || !onFullValidate(val)) {
+//            event.currentTarget.focus();
+//        }
+//    }
+//}
 
-        setValue(val);
+//function onValueChange(
+//    onQuickValidate: TextValidator,
+//    onValueChange: (val: string) => void,
+//    setValue: (val: string) => void)
+//{
+//    return (event: ChangeEvent<HTMLInputElement>) => {
+//        const val = event.target.value;
 
-        if (onQuickValidate(val)) {
-            onValueChange(val);
-        }
-    };
-}
+//        setValue(val);
 
-function onKeyDown(setValue: (val: string) => void, defaultValue: string) {
-    return (event: KeyboardEvent<HTMLInputElement>) => {
-        if (event.keyCode === 28) {
-            setValue(defaultValue);
-        }
-    }
-}
+//        if (onQuickValidate(val)) {
+//            onValueChange(val);
+//        }
+//    };
+//}
+
+//function onKeyDown(setValue: (val: string) => void, defaultValue: string) {
+//    return (event: KeyboardEvent<HTMLInputElement>) => {
+//        if (event.keyCode === 28) {
+//            setValue(defaultValue);
+//        }
+//    }
+//}
