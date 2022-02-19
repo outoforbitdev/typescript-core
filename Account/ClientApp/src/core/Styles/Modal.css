@@ -1,0 +1,43 @@
+﻿body {
+}
+
+div.OODCoreModalContainer {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    height: 100vh;
+    background-color: gray;
+    margin: 0px;
+}
+
+div.OODCoreModalColumn{
+    display: flex;
+    flex-direction: row;
+}
+
+div.OODCoreModalMargin{
+    flex-grow: 1;
+}
+
+div.OODCoreModalFrame{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100px;
+    width: 500px;
+}
+
+div.OODCoreModalContent{
+    flex-grow: 1;
+    margin: 5px;
+}
+
+div.OODCoreModalButtons {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+div.OODCoreModalButtonsDiv{
+    margin: 2px;
+}

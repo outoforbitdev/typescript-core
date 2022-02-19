@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextField } from './core/Components';
+import { Modal } from './core/Components/Modal';
 import { PasswordField } from './core/Components/PasswordField';
 
 export default class App extends Component {
@@ -7,10 +8,13 @@ export default class App extends Component {
 
   render () {
       return (
-          <div>
-              <TextField clearable />
-              <PasswordField showable />
-          </div>
+          <Modal
+              closable={true}
+              accept={"Accept"}
+              cancel={"Cancel"}
+          >
+              Content
+          </Modal>
     );
   }
 }

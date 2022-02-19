@@ -1,0 +1,17 @@
+﻿body {
+}
+
+div.OODCoreXRow {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px;
+}
+
+div.OODCoreXRowMargin {
+    flex-grow: 1;
+}
+
+div.OODCoreXRowButton{
+    margin: 2px;
+}
