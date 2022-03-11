@@ -1,9 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { InfoBoxLine } from './InfoBoxLine';
-import { IInfoBoxLine } from './InfoBox';
-import { v4 as uuidv4 } from 'uuid';
+import React, { Fragment } from 'react';
 import '../Styles/InfoBox.css';
-import { IComponentProps } from '../Components';
+import { IComponentProps } from './IComponentProps';
 
 interface IInfoBoxSectionProps extends IComponentProps {
     header: string;

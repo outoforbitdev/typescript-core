@@ -2,11 +2,11 @@ import * as React from 'react';
 import {
     ChangeEvent,
     FocusEvent,
-    KeyboardEvent,
-    useState
+    KeyboardEvent
 } from 'react';
 import '../Styles/Input.css';
-import { IComponentProps } from './IComponentProps';
+import '../Styles/Themes.css';
+import { getClassName, IComponentProps } from './IComponentProps';
 
 type FieldValidator<T> = (val: T) => boolean;
 type FieldChange<T> = (val: T) => void;
@@ -16,6 +16,15 @@ export interface IInputProps<T> extends IComponentProps {
     onValueChange?: FieldChange<T>;
     onQuickValidate?: FieldValidator<T>;
     onFullValidate?: FieldValidator<T>;
+    size?: number;
+}
+
+export function InputSpan(props: IComponentProps): JSX.Element {
+    return (
+        <span className={getClassName("OODCoreComponentInputField", props.className, props.theme)}>
+            {props.children}
+        </span>
+    );
 }
 
 export function defaultValidator<T>(_val: T) {

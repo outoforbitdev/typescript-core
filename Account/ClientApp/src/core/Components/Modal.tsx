@@ -1,11 +1,5 @@
-import {
-    ChangeEvent,
-    FocusEvent,
-    KeyboardEvent,
-    useState
-} from 'react';
-import { Button } from '../Components';
 import '../Styles/Modal.css';
+import { Button } from './Button';
 import { IComponentProps } from './IComponentProps';
 import { XRow } from './XRow';
 

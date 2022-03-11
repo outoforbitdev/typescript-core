@@ -4,7 +4,7 @@ import {
 } from 'react';
 import '../Styles/Input.css';
 import { Button } from './Button';
-import { defaultValidator, IInputProps, onBlur, onKeyDown, onValueChange } from './InputField';
+import { defaultValidator, IInputProps, InputSpan, onBlur, onKeyDown, onValueChange } from './InputField';
 
 interface IPasswordFieldProps extends IInputProps<string> {
     showable?: boolean;
@@ -23,19 +23,24 @@ export function PasswordField(props: IPasswordFieldProps): JSX.Element {
     const [visible, setVisible] = useState(false);
 
     return (
-        <div className={"OODCoreComponentInputField"}>
-            <input type={visible ? "text": "password"}
+        <InputSpan>
+            <input type={visible ? "text" : "password"}
                 inputMode={"text"}
                 value={props.defaultValue}
-                className={"OODCoreComponentPasswordField"}
                 onBlur={onBlur(onQuickValidate, onFullValidate)}
                 onChange={onValueChange(onQuickValidate, onChange, setValue)}
                 onKeyDown={onKeyDown(setValue, defaultValue)}
+                size={props.size}
             />
             {
-                props.showable ? <Button text={visible ? "Hide" : "Show"} onClick={toggleVisible(setVisible, visible)} /> : null
+                props.showable ?
+                    <Button text={visible ? "Hide" : "Show"}
+                        seamless
+                        onClick={toggleVisible(setVisible, visible)}
+                        width={"40px"}
+                    /> : null
             }
-        </div>
+        </InputSpan>
     );
 }
 

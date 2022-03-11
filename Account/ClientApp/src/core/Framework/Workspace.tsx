@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import { Activity } from './Activity';
-import { TabStrip, Button } from '../Components';
+import { TabStrip } from '../Components/TabStrip';
 import '../Styles/Workspace.css';
+import { Activity } from './Activity';
 
 class GenericActivity extends Activity<{}, {}>{ }
 

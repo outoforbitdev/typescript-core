@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
-import { InfoBoxSection } from './InfoBoxSection';
+import React from 'react';
+import { IsMobile } from '../Library/Devices';
 import '../Styles/InfoBox.css';
-import * as lib from '../Library';
-import { v4 as uuidv4 } from 'uuid';
-import { IComponentProps } from '../Components';
-import { Button } from '../Components';
+import { Button } from './Button';
+import { IComponentProps } from './IComponentProps';
 
 export interface IInfoBoxLine {
     label: string;
@@ -25,7 +23,7 @@ interface IInfoBoxProps extends IComponentProps {
 
 export function InfoBox(props: IInfoBoxProps) {
     const componentName = "";
-    const mobileClass = lib.IsMobile() ? "" : " desktop";
+    const mobileClass = IsMobile() ? "" : " desktop";
     const classNames = props.className + " " + componentName;
     return (
         <table className={classNames + mobileClass}>

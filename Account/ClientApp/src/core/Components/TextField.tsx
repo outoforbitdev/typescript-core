@@ -2,9 +2,10 @@ import * as React from 'react';
 import {
     useState
 } from 'react';
+import { Compose } from '../Library/Compose';
 import '../Styles/Input.css';
 import { Button } from './Button';
-import { defaultValidator, IInputProps, onBlur, onKeyDown, onValueChange } from './InputField';
+import { defaultValidator, IInputProps, InputSpan, onBlur, onKeyDown, onValueChange } from './InputField';
 
 interface ITextFieldProps extends IInputProps<string> {
     clearable?: boolean;
@@ -22,24 +23,29 @@ export function TextField(props: ITextFieldProps): JSX.Element {
     const [value, setValue] = useState(defaultValue);
 
     return (
-        <div className={"OODCoreComponentInputField"}>
+        <InputSpan>
             <input type={"text"}
                 inputMode={"text"}
-                value={props.defaultValue}
+                value={value}
                 className={"OODCoreComponentTextField"}
                 onBlur={onBlur(onQuickValidate, onFullValidate)}
                 onChange={onValueChange(onQuickValidate, onChange, setValue)}
                 onKeyDown={onKeyDown(setValue, defaultValue)}
             />
             {
-                props.clearable ? <Button text={"Clear"} onClick={__clearField} /> : null
+                props.clearable ?
+                    <Button text={"Clear"}
+                        onClick={Compose(__clearField, setValue)}
+                        seamless
+                        width={"40px"}
+                    /> : null
             }
-        </div>
+        </InputSpan>
     );
 }
 
-function __clearField(): void {
-
+function __clearField(setValue: (val: string) => void): void {
+    setValue("");
 }
 
 //function defaultValidator(_val: string) {

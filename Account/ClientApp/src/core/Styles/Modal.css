@@ -23,8 +23,6 @@ div.OODCoreModalFrame{
     display: flex;
     flex-direction: column;
     background-color: white;
-    height: 100px;
-    width: 500px;
 }
 
 div.OODCoreModalContent{
